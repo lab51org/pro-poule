@@ -12,11 +12,11 @@ return new class extends Migration
 public function up(): void
 {
     Schema::table('users', function (Blueprint $table) {
-        // Aggiunge la colonna per il ruolo, con 'user' come valore predefinito
-        $table->string('role')->default('user');
-
-        // Aggiunge la colonna booleana per l'approvazione, con 'false' (0) come valore predefinito
-        $table->boolean('is_approved')->default(false);
+        $table->dropForeign(['club_id']);
+        $table->dropColumn('club_id');
+    });
+    Schema::table('clubs', function (Blueprint $table) {
+        $table->dropForeign(['manager_id']);
     });
 }
     /**
@@ -24,7 +24,7 @@ public function up(): void
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('tables', function (Blueprint $table) {
             //
         });
     }

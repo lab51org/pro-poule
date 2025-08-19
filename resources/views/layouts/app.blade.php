@@ -21,11 +21,6 @@
                         Dashboard
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('clubs.index') }}" class="nav-link text-white {{ request()->routeIs('clubs.*') ? 'active' : '' }}">
-                        Gestione Club
-                    </a>
-                </li>
                 @can('is-admin')
                     <li>
                         <a href="{{ route('admin.users.index') }}" class="nav-link text-white {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">

@@ -32,9 +32,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Rotte per la gestione dei Club (accessibili a tutti gli utenti loggati)
-    Route::resource('clubs', ClubController::class);
-    
     // Sotto-gruppo accessibile SOLO agli amministratori
     Route::middleware('can:is-admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
