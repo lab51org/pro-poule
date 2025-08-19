@@ -29,4 +29,12 @@ En termes simples, vous pouvez faire ce que vous voulez avec ce code : l'utilise
 
 La seule chose que je vous demande est de **citer mon nom (Matteo Dalmasso)** et mon email (**md@lab51.org**) lorsque vous l'utilisez ou le partagez. Cela me ferait très plaisir et serait une manière de reconnaître l'originalité de mon travail !
 
+***
+
+## Contribution et Communication
+
+Le développement, la gestion, et la communication, y compris les commentaires dans le code, sont préférables en français et/ou en anglais. En raison de l'objectif du projet, il est préférable de ne pas utiliser l'italien dans le cycle de développement.
+
+La langue principale de l'application est l'italien, mais elle prend également en charge le français et l'anglais.
+
 Pour les détails légaux complets, veuillez consulter le fichier `LICENSE` à la racine du projet.
