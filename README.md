@@ -1,26 +1,40 @@
-# PÉTANQUE-WEB: Gestione Tornei 🏟️
+# PÉTANQUE-WEB: Tournaments Management 🏟️
 
-Ciao! Questo progetto è un'applicazione web completa per la gestione dei tornei di pétanque. Ho cercato di automatizzare e semplificare l'organizzazione di ogni evento, dal sorteggio delle squadre alla gestione del montepremi. Spero ti sia d'aiuto!
+Hi! This project is a complete web application for managing pétanque tournaments. I've tried to automate and simplify the organization of every event, from the team draw to prize money management. I hope it helps you!
 
-## Cosa fa?
+***
 
-* **Creazione di Poule**: Genera automaticamente le poule per tornei a tre o quattro squadre.
-* **Sorteggi**: Gestisce in modo equo e casuale le baraonde e i sorteggi dei gironi.
-* **Gestione Premi**: Calcola e gestisce la divisione del montepremi in base ai risultati.
-* **Gare Complete**: Fornisce tutti gli strumenti necessari per seguire una gara dall'inizio alla fine.
+## What does it do?
 
-## Requisiti Tecnici
+* **Poule Creation**: Automatically generates poules for three or four-player team tournaments.
+* **Draws**: Manages "baraondes" and group draws in a fair and random way.
+* **Prize Management**: Calculates and manages the division of prize money based on results.
+* **Complete Competitions**: Provides all the necessary tools to follow a competition from start to finish.
 
-L'applicazione è sviluppata con il framework **Laravel** e usa un database **MySQL**.
+***
 
-**Attenzione:** Non sono disponibili istruzioni per la configurazione del server web e del database. È richiesto di avere familiarità con questi argomenti per l'installazione e la configurazione, che deve essere fatta in autonomia.
+## Technical Requirements
 
-## Licenza e Diritti d'Autore 🤝
+The application is developed with the **Laravel** framework and uses a **MySQL** database.
 
-Questo progetto è rilasciato sotto **Licenza MIT**.
+**Warning**: Instructions for web server and database configuration are not provided. You are required to be familiar with these topics for installation and configuration, which must be done independently.
 
-In parole povere, puoi fare quello che vuoi con questo codice: usarlo, copiarlo, modificarlo o distribuirlo liberamente.
+***
 
-L'unica cosa che ti chiedo è di **citare il mio nome (Matteo Dalmasso)** e la mia email (**md@lab51.org**) quando lo usi o lo condividi. Mi farebbe molto piacere e sarebbe un modo per riconoscere l'originalità del mio lavoro!
+## License and Copyright 🤝
 
-Per i dettagli legali completi, dai un'occhiata al file `LICENSE` nella root del progetto.
+This project is released under the **MIT License**.
+
+In simple terms, you can do whatever you want with this code: use it, copy it, modify it, or distribute it freely.
+
+The only thing I ask is that you **cite my name (Matteo Dalmasso)** and my email (**md@lab51.org**) when you use or share it. I would be very happy and it would be a way to acknowledge the originality of my work!
+
+***
+
+## Contribution and Communication
+
+Development, management, and communication, including comments in the code, are preferred in French and/or English. Due the goal of the project is preferible to not use italian in all development cycle...
+
+The application's main language is Italian, but it also supports French and English.
+
+For complete legal details, please check the `LICENSE` file at the root of the project.
