@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User; // Aggiungi questo in cima
-use App\Models\clubs;
+use App\Models\Tournament;
 use Illuminate\Http\Request;
 
-class ClubsController extends Controller
+class TournamentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +34,7 @@ class ClubsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(clubs $clubs)
+    public function show(Tournament $tournament)
     {
         //
     }
@@ -43,24 +42,15 @@ class ClubsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(clubs $clubs)
+    public function edit(Tournament $tournament)
     {
-        // Recupera tutti gli utenti approvati che NON sono admin
-    $potentialManagers = User::where('role', '!=', 'admin')
-                             ->where('is_approved', true)
-                             ->orderBy('name')
-                             ->get();
-
-    return view('clubs.edit', [
-        'club' => $club,
-        'potentialManagers' => $potentialManagers
-    ]);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, clubs $clubs)
+    public function update(Request $request, Tournament $tournament)
     {
         //
     }
@@ -68,7 +58,7 @@ class ClubsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(clubs $clubs)
+    public function destroy(Tournament $tournament)
     {
         //
     }

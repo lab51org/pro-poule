@@ -7,7 +7,7 @@
 
     {{-- Questo blocco di codice è visibile solo agli utenti con il ruolo di 'admin' --}}
     @can('is-admin')
-        
+
        <div class="row">
 
     <div class="col-xl-4 col-md-6 mb-4">
@@ -26,21 +26,7 @@
         </div>
     </div>
 
-    <div class="col-xl-4 col-md-6 mb-4">
-        <div class="card border-left-success shadow h-100 py-2">
-            <a href="{{ route('clubs.index') }}" class="text-decoration-none">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Club Registrati</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $stats['totalClubs'] }}</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+
 
     <div class="col-xl-4 col-md-6 mb-4">
         <div class="card border-left-warning shadow h-100 py-2">
@@ -60,7 +46,7 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
     @else
 
         {{-- Questo blocco è visibile a tutti gli altri utenti (non admin) --}}

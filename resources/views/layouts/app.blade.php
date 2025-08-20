@@ -9,50 +9,60 @@
     @vite(['resources/scss/app.scss', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="d-flex" style="min-height: 100vh;">
-        <nav class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                <span class="fs-4">Petanque App</span>
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link text-white {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                        Dashboard
+<div class="d-flex" style="min-height: 100vh;">
+    <nav class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+            <span class="fs-4">Petanque App</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="{{ route('dashboard') }}"
+                   class="nav-link text-white {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    {{ __('Dashboard')}}
+                </a>
+            </li>
+            @can('is-admin')
+                <li>
+                    <a href="{{ route('admin.users.index') }}"
+                       class="nav-link text-white {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                        {{ __('Approvazione Utenti')}}
                     </a>
                 </li>
-                @can('is-admin')
-                    <li>
-                        <a href="{{ route('admin.users.index') }}" class="nav-link text-white {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                            Approvazione Utenti
+                <li>
+                    <a href="{{ route('tournaments.index') }}" class="nav-link text-white {{ request()->routeIs('tournaments.*') ? 'active' : '' }}">
+                        {{ __('Tornei')}}
+                    </a>
+                </li>
+            @endcan
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+               id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+                <strong>{{ Auth::user()->name }}</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser">
+                <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profilo</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); this.closest('form').submit();">
+                            {{ __('Logout')}}
                         </a>
-                    </li>
-                @endcan
+                    </form>
+                </li>
             </ul>
-            <hr>
-            <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                    <strong>{{ Auth::user()->name }}</strong>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser">
-                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">Profilo</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
-                                Logout
-                            </a>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        </div>
+    </nav>
 
-        <main class="w-100 p-4" style="background-color: #f8f9fa;">
-            {{-- QUESTA È LA RIGA FONDAMENTALE CHE DEVE ESSERCI --}}
-            @yield('content')
-        </main>
-    </div>
+    <main class="w-100 p-4" style="background-color: #f8f9fa;">
+        @yield('content')
+    </main>
+</div>
 </body>
 </html>

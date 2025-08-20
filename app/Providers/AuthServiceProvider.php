@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Providers;
-
-use App\Models\Club;
 use App\Policies\ClubPolicy;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;

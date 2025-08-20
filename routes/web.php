@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\UserController as AdminUserController;
-use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
@@ -24,14 +23,15 @@ Route::get('/', function () {
 
 // Gruppo principale per tutti gli utenti che hanno fatto il login
 Route::middleware(['auth', 'verified'])->group(function () {
-    
+
     // Rotta per la Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     // Rotte per la gestione del Profilo
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+// NUOVE ROTTE PER LA GESTIONE DEI TORNEI DA PARTE DEGLI UTENTI
+    Route::resource('tournaments', \App\Http\Controllers\TournamentController::class);
     // Sotto-gruppo accessibile SOLO agli amministratori
     Route::middleware('can:is-admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');

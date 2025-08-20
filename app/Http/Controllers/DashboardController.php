@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Club;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 
@@ -21,7 +19,6 @@ class DashboardController extends Controller
         if (Gate::allows('is-admin')) {
             $stats = [
                 'totalUsers' => User::count(),
-                'totalClubs' => Club::count(),
                 'pendingUsers' => User::where('is_approved', false)->count(),
             ];
         }
