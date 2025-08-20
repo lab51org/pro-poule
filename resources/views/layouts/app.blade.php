@@ -38,6 +38,9 @@
         </ul>
         <hr>
         <div class="dropdown">
+<a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        🌍 {{ strtoupper(app()->getLocale()) }}
+    </a>
             <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
                id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
                 <strong>{{ Auth::user()->name }}</strong>

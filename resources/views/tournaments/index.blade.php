@@ -3,7 +3,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 text-gray-800">I Miei Tornei</h1>
+            <h1 class="h3 text-gray-800">{{ __('I Miei Tornei')}}</h1>
             <a href="{{ route('tournaments.create') }}" class="btn btn-primary">Crea Nuovo Torneo</a>
         </div>
 

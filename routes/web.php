@@ -5,13 +5,20 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 */
-
+// Rotta per impostare la lingua
+Route::get('locale/{locale}', function ($locale) {
+    // Salva la scelta dell'utente nella sua sessione
+    Session::put('locale', $locale);
+    // Torna alla pagina precedente
+    return redirect()->back();
+})->name('locale.set');
 // Rotta pubblica per la pagina di benvenuto (o reindirizzamento)
 Route::get('/', function () {
     // Come da consiglio precedente, reindirizziamo gli utenti
