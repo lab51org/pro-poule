@@ -19,7 +19,18 @@ jobs:
     # The virtual machine runner on which the job will be executed.
     runs-on: ubuntu-latest
     
-    # The steps of the job.
+    # Aggiungi i servizi necessari per il job, in questo caso un database MariaDB.
+    services:
+      mariadb:
+        image: mariadb:10.5 # Utilizza un'immagine Docker di MariaDB.
+        ports:
+          - 3306:3306 # Mappa la porta del container sulla porta del runner.
+        env:
+          MYSQL_ROOT_PASSWORD: password # Imposta la password di root.
+          MYSQL_DATABASE: laravel_test # Imposta il nome del database.
+        options: --health-cmd="mariadb-admin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+    
+    # I passaggi (steps) del job.
     steps:
       # Checkout the code.
       - name: Checkout Code
@@ -30,7 +41,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2' # Specify the PHP version to use
-          extensions: mbstring, pdo_sqlite # Add necessary extensions
+          extensions: mbstring, pdo_mysql # Aggiunge l'estensione pdo_mysql
           tools: composer:v2, phpunit # Install composer and phpunit
           
       # Install Composer dependencies.
@@ -43,13 +54,19 @@ jobs:
           cp .env.example .env
           php artisan key:generate
       
-      # Create the SQLite database for tests.
-      - name: Create SQLite Database
-        run: touch database/database.sqlite
+      # Configura le variabili d'ambiente per il database MariaDB.
+      - name: Set up Database Environment
+        run: |
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=laravel_test" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=password" >> .env
       
       # Run database migrations.
       - name: Run Database Migrations
-        run: php artisan migrate --env=testing
+        run: php artisan migrate --force
 
       # Run PHPUnit tests.
       - name: Run PHPUnit Tests
