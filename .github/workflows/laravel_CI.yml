@@ -54,3 +54,22 @@ jobs:
       # Run PHPUnit tests.
       - name: Run PHPUnit Tests
         run: php artisan test
+
+  # New job to run Snyk security scans.
+  snyk-scan:
+    # This job will only run after 'laravel-tests' has successfully completed.
+    needs: laravel-tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checkout the code.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      # Execute the Snyk scan.
+      - name: Run Snyk Scan
+        uses: snyk/actions/php@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} # Use the secret you added
+        with:
+          args: --all-projects # Scan all projects (composer, npm, etc.)
