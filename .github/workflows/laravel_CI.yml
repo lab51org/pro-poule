@@ -1,0 +1,56 @@
+# Workflow name, visible in the "Actions" tab of GitHub.
+name: Laravel CI
+
+# Defines the events that trigger this workflow.
+on:
+  # Run the workflow on every push to the 'dev' branch.
+  push:
+    branches: [ "dev" ]
+  # Run the workflow on every pull request opened for the 'dev' branch.
+  pull_request:
+    branches: [ "dev" ]
+  # Allows you to run the workflow manually from the GitHub UI.
+  workflow_dispatch:
+
+# Defines the jobs that will be executed in this workflow.
+jobs:
+  # Job for running tests and code analysis.
+  laravel-tests:
+    # The virtual machine runner on which the job will be executed.
+    runs-on: ubuntu-latest
+    
+    # The steps of the job.
+    steps:
+      # Checkout the code.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Set up the PHP environment.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Specify the PHP version to use
+          extensions: mbstring, pdo_sqlite # Add necessary extensions
+          tools: composer:v2, phpunit # Install composer and phpunit
+          
+      # Install Composer dependencies.
+      - name: Install Composer Dependencies
+        run: composer install --no-interaction --no-progress
+
+      # Create a .env file and generate the key.
+      - name: Prepare Laravel Environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+      
+      # Create the SQLite database for tests.
+      - name: Create SQLite Database
+        run: touch database/database.sqlite
+      
+      # Run database migrations.
+      - name: Run Database Migrations
+        run: php artisan migrate --env=testing
+
+      # Run PHPUnit tests.
+      - name: Run PHPUnit Tests
+        run: php artisan test
