@@ -16,6 +16,7 @@ It aims to **simplify and automate** the organization of competitions for both *
 ## TL;DR
 - [**Technical stuffs and docs for developers**](CONTRIBUTE.md)
 - [**Code of conduct**](CODE_OF_CONDUCT.md)
+- [**Join Discord chat**](https://discord.gg/w5NtgRq7)
 - **User Guide and end user docs**
 ---
 

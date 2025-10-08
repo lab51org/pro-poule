@@ -4,6 +4,8 @@ Thank you for contributing to **PRO POULE**! ❤️
 This project is **open source**, and every contribution — big or small — is truly appreciated.  
 This guide will help you contribute cleanly and consistently with the project’s structure and code style.
 
+You can join discord channel -> [**Join Discord chat**](https://discord.gg/w5NtgRq7)
+
 ---
 
 ## 🧭 How to Contribute
