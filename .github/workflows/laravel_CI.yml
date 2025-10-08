@@ -1,0 +1,92 @@
+# Workflow name, visible in the "Actions" tab of GitHub.
+name: Laravel CI
+
+# Defines the events that trigger this workflow.
+on:
+  # Run the workflow on every push to the 'dev' branch.
+  push:
+    branches: [ "dev" ]
+  # Run the workflow on every pull request opened for the 'dev' branch.
+  pull_request:
+    branches: [ "dev" ]
+  # Allows you to run the workflow manually from the GitHub UI.
+  workflow_dispatch:
+
+# Defines the jobs that will be executed in this workflow.
+jobs:
+  # Job for running tests and code analysis.
+  laravel-tests:
+    # The virtual machine runner on which the job will be executed.
+    runs-on: ubuntu-latest
+    
+    # Aggiungi i servizi necessari per il job, in questo caso un database MariaDB.
+    services:
+      mariadb:
+        image: mariadb:10.5 # Utilizza un'immagine Docker di MariaDB.
+        ports:
+          - 3306:3306 # Mappa la porta del container sulla porta del runner.
+        env:
+          MYSQL_ROOT_PASSWORD: password # Imposta la password di root.
+          MYSQL_DATABASE: laravel_test # Imposta il nome del database.
+        options: --health-cmd="mariadb-admin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+    
+    # I passaggi (steps) del job.
+    steps:
+      # Checkout the code.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Set up the PHP environment.
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2' # Specify the PHP version to use
+          extensions: mbstring, pdo_mysql # Aggiunge l'estensione pdo_mysql
+          tools: composer:v2, phpunit # Install composer and phpunit
+          
+      # Install Composer dependencies.
+      - name: Install Composer Dependencies
+        run: composer install --no-interaction --no-progress
+
+      # Create a .env file and generate the key.
+      - name: Prepare Laravel Environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+      
+      # Configura le variabili d'ambiente per il database MariaDB.
+      - name: Set up Database Environment
+        run: |
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=laravel_test" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=password" >> .env
+      
+      # Run database migrations.
+      - name: Run Database Migrations
+        run: php artisan migrate --force
+
+      # Run PHPUnit tests.
+      - name: Run PHPUnit Tests
+        run: php artisan test
+
+  # New job to run Snyk security scans.
+  snyk-scan:
+    # This job will only run after 'laravel-tests' has successfully completed.
+    needs: laravel-tests
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checkout the code.
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      # Execute the Snyk scan.
+      - name: Run Snyk Scan
+        uses: snyk/actions/php@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }} # Use the secret you added
+        with:
+          args: --all-projects # Scan all projects (composer, npm, etc.)
