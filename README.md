@@ -1,19 +1,12 @@
-[![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?logo=laravel&logoColor=white)](https://laravel.com)
-[![PHP](https://img.shields.io/badge/PHP-%3E%3D%208.2-777BB4?logo=php&logoColor=white)](https://www.php.net/)
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-%3E%3D%208.3-777BB4?logo=php&logoColor=white)](https://www.php.net/)
 [![Database](https://img.shields.io/badge/DB-MariaDB-003545?logo=mariadb&logoColor=white)](https://mariadb.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.9.0--beta-blue.svg)]()
-[![Build](https://img.shields.io/badge/build-passing-success.svg)]()
-[![Stars](https://img.shields.io/github/stars/lab51org/pro-poule?style=social)](https://github.com/lab51org/pro-poule/stargazers)
-[![Forks](https://img.shields.io/github/forks/lab51org/pro-poule?style=social)](https://github.com/lab51org/pro-poule/network/members)
+[![Version](https://img.shields.io/badge/version-0.1.0--alfa-blue.svg)]()
+![Discord](https://img.shields.io/discord/1425521062883491971)
 [![Patreon](https://img.shields.io/badge/Support%20us-Patreon-orange?logo=patreon)](https://patreon.com/lab51)
 
 # 🏟️ PRO POULE | PROgram for POUles, Leagues and Events
-
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
-![Built With](https://img.shields.io/badge/Built%20with-Laravel%20%7C%20Tailwind-blue.svg)
-![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 
 **PRO POULE** is an open source web application designed to **manage pétanque tournaments, leagues, and community events
 **.  
