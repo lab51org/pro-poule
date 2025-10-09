@@ -1,38 +1,38 @@
 ---
-name: Bug report
-about: Create a report to help us improve
-title: ''
+name: General Issue (English)
+about: Report a bug, suggest a feature, or ask a question
+title: "[ISSUE] "
 labels: ''
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## Type of issue
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+- [ ] Bug report
+- [ ] Feature suggestion
+- [ ] Question
+- [ ] Errors or lacks in documentation
+- [ ] Other
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Description
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+<!-- Please provide a clear and concise description of the issue or suggestion. -->
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Steps to reproduce (for bugs)
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+1. 
+2. 
+3. 
 
-**Additional context**
-Add any other context about the problem here.
+## Expected behavior
+
+<!-- What did you expect to happen? -->
+
+## Screenshots or Logs (optional)
+
+<!-- If applicable, add screenshots or error logs to help explain your problem. -->
+
+## Additional context
+
+<!-- Add any other context or information about the issue here. -->
