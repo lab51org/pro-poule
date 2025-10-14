@@ -1,0 +1,74 @@
+# Versione di configurazione di CircleCI
+version: 2.1
+
+# --------------------------
+# JOBS (Definizione dei passi)
+# --------------------------
+jobs:
+  test_laravel:
+   
+    docker:
+    
+      - image: cimg/php:8.3-node # cimg/php è una base solida
+     
+      - image: mariadb:11.8-lts
+        environment:
+          
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+
+    
+    environment:
+      APP_ENV: testing
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: laravel
+      DB_USERNAME: user
+      DB_PASSWORD: password
+
+    steps:
+      - checkout
+      
+      
+      - run:
+          name: Installazione Composer
+          command: composer install -n --prefer-dist
+      
+      
+      - run:
+          name: Prepara Laravel
+          command: |
+            cp .env.example .env
+            php artisan key:generate
+      
+      
+      - run:
+          name: Attendi DB e lancia migrazioni
+          command: |
+            dockerize -wait tcp://127.0.0.1:3306 -timeout 1m
+            php artisan migrate --force --seed
+      
+      
+      - run:
+          name: Esegui Test PHPUnit
+          command: ./vendor/bin/phpunit 
+
+# --------------------------
+# WORKFLOWS (Orchestrazione)
+# --------------------------
+workflows:
+  build_and_test:
+    jobs:
+      - test_laravel:
+          filters:
+            branches:
+              ignore:
+                - dev
+              only:
+                - main
+                - /^version.*/
+                - /^feat.*/
+                - /^hotfix.*/
