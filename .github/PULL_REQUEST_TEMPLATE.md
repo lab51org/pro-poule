@@ -16,6 +16,7 @@ Select the type of change this PR introduces:
 - [ ] Documentation (updates to README, comments, etc.)
 - [ ] Build/Config (changes to build configuration files, dependencies)
 - [ ] Test (adds or modifies tests)
+- [ ] Chore (Maintenance tasks or updates to the build process)
 - [ ] Typo (fix a grammar or orthographic error)
 
 ---
