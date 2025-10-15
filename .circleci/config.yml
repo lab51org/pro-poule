@@ -11,7 +11,7 @@ jobs:
     
       - image: cimg/php:8.3-node # cimg/php è una base solida
      
-      - image: mariadb:11.8-lts
+      - image: mariadb:lts-noble
         environment:
           
           MYSQL_ROOT_PASSWORD: root
