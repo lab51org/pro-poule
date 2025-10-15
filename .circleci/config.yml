@@ -2,7 +2,7 @@
 version: 2.1
 
 # --------------------------
-# JOBS (Definizione dei passi)
+# JOBS
 # --------------------------
 jobs:
   test_laravel:
@@ -34,12 +34,12 @@ jobs:
       
       
       - run:
-          name: Installazione Composer
+          name: Install Composer
           command: composer install -n --prefer-dist
       
       
       - run:
-          name: Prepara Laravel
+          name: Prepare Laravel
           command: |
             cp .env.example .env
             php artisan key:generate
@@ -53,7 +53,7 @@ jobs:
       
       
       - run:
-          name: Esegui Test PHPUnit
+          name: Exec PHPUnit test
           command: ./vendor/bin/phpunit 
 
 # --------------------------
@@ -66,9 +66,12 @@ workflows:
           filters:
             branches:
               ignore:
-                - dev
+            
               only:
-                - main
-                - /^version.*/
-                - /^feat.*/
-                - /^hotfix.*/
+              - main
+              - dev
+              - /^version.*/
+              - /^release.*/
+              - /^feat.*/
+              - /^hotfix.*/
+              - /^v.*/
